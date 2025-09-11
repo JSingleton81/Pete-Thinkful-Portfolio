@@ -6,12 +6,12 @@ body {
   font-family: "Source Sans Pro", Tahoma, Geneva, Verdana, sans-serif;
   padding: 40px;
 }
-
-/* Set the font family for any h1, h2, or h3 heading */
-header {
+header{
   text-align: center;
+  
 }
 
+/* Set the font family for any h1, h2, or h3 heading */
 h1{
   text-align: center;
  
