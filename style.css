@@ -8,7 +8,15 @@ body {
 }
 header{
   text-align: center;
-  
+}
+
+nav {
+  text-align: center;
+}
+
+nav a {
+  margin: 0 15px;
+  display: inline-block;
 }
 
 /* Set the font family for any h1, h2, or h3 heading */
