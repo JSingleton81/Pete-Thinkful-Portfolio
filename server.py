@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import http.server
 import socketserver
+import os
 from http.server import SimpleHTTPRequestHandler
 
 class NoCacheHTTPRequestHandler(SimpleHTTPRequestHandler):
@@ -10,10 +11,14 @@ class NoCacheHTTPRequestHandler(SimpleHTTPRequestHandler):
         self.send_header('Expires', '0')
         super().end_headers()
 
+class ReusableTCPServer(socketserver.TCPServer):
+    allow_reuse_address = True
+
 if __name__ == "__main__":
-    PORT = 5000
+    PORT = int(os.environ.get("PORT", 5000))
     Handler = NoCacheHTTPRequestHandler
     
-    with socketserver.TCPServer(("0.0.0.0", PORT), Handler) as httpd:
-        print(f"Serving at http://0.0.0.0:{PORT}")
+    print(f"Starting server on port {PORT}")
+    with ReusableTCPServer(("0.0.0.0", PORT), Handler) as httpd:
+        print(f"Server successfully started at http://0.0.0.0:{PORT}")
         httpd.serve_forever()
